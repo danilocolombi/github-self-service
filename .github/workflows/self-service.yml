@@ -1,17 +1,11 @@
 name: GitHub Self-service
 
 on:
-  push:
-    branches: [ "dev", "main" ]
-  pull_request:
-    branches: [ "dev", "main" ]
-
   workflow_dispatch:
     inputs:
       repo-name:
         description: 'Repository Name'
         required: true
-        type: text
 
 jobs:
   create-repository:
