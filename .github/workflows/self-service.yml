@@ -18,7 +18,7 @@ jobs:
     steps:
         
       - name: Create Repository
-        run: gh repo create $REPO --private add-readme --license MIT --gitignore Node
+        run: gh repo create $REPO --private --add-readme --license MIT --gitignore Node
 
       - name: List Repositories
         run: gh repo list
