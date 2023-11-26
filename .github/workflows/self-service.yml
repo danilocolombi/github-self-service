@@ -17,8 +17,11 @@ jobs:
 
     steps:
         
-      - name: Create Repository
-        run: gh repo create $REPO --private --add-readme --license MIT --gitignore Node
+      - name: Create Repo
+        run: $CREATED_REPO = $(gh repo create $REPO --public --add-readme --license MIT --gitignore Node)
 
-      - name: List Repositories
-        run: gh repo list
+      - name: View Repo
+        run: gh repo view $CREATED_REPO
+
+      - name: Enable Discussions
+        run: gh repo edit $CREATED_REPO --enable-discussions
