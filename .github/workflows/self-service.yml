@@ -18,7 +18,9 @@ jobs:
     steps:
         
       - name: Create Repo
-        run: CREATED_REPO=$(gh repo create $REPO --public --add-readme --license MIT --gitignore Node)
+        run: |
+          REPO_NAME=$(gh repo create $REPO --public --add-readme --license MIT --gitignore Node) \
+          echo "CREATED_REPO=${REPO_NAME}" >> $GITHUB_ENV
 
       - name: View Repository Name
         run: echo $CREATED_REPO
