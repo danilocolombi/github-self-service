@@ -21,7 +21,9 @@ jobs:
         run: CREATED_REPO=$(gh repo create $REPO --public --add-readme --license MIT --gitignore Node)
 
       - name: View Repo
-        run: gh repo view $CREATED_REPO
+        run: |
+          echo $CREATED_REPO \
+          gh repo view $CREATED_REPO
 
       - name: Enable Discussions
         run: gh repo edit $CREATED_REPO --enable-discussions
