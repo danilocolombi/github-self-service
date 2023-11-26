@@ -18,7 +18,7 @@ jobs:
     steps:
         
       - name: Create Repo
-        run: $CREATED_REPO = $(gh repo create $REPO --public --add-readme --license MIT --gitignore Node)
+        run: CREATED_REPO=$(gh repo create $REPO --public --add-readme --license MIT --gitignore Node)
 
       - name: View Repo
         run: gh repo view $CREATED_REPO
