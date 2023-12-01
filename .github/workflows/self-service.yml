@@ -6,14 +6,18 @@ on:
       repo-name:
         description: 'Repository Name'
         required: true
+      project-name:
+        description: 'Project Name'
+        required: true
 
 jobs:
-  create-repository:
+  create-github:
     runs-on: ubuntu-latest
 
     env:
       GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       REPO: ${{ github.event.inputs.repo-name }}
+      PROJECT: ${{ github.event.inputs.project-name }}
 
     steps:
         
@@ -31,3 +35,8 @@ jobs:
 
       - name: Enable Discussions
         run: gh repo edit $CREATED_REPO --enable-discussions
+
+      - name: Create Project
+        run: |
+          PROJECT_NUMBER=$(gh project create --title "$PROJECT")
+          echo "PROJECT_NUMBER: ${PROJECT_NUMBER}"
