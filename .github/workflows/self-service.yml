@@ -47,5 +47,5 @@ jobs:
         run: gh project view $PROJECT_NUMBER --owner @me
 
       - name: Delete Repo
-        if: ${{ CLEAN_UP == true}}
+        if: ${{ env.CLEAN_UP == 'true' }}
         run: gh repo delete $CREATED_REPO --yes
