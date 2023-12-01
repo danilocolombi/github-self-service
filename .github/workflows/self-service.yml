@@ -24,11 +24,7 @@ jobs:
       - name: Create Repo
         run: |
           REPO_NAME=$(gh repo create $REPO --public --add-readme --license MIT --gitignore Node)
-          echo "REPO_NAME: ${REPO_NAME}"
           echo "CREATED_REPO=${REPO_NAME}" >> $GITHUB_ENV
-
-      - name: View Repository Name
-        run: echo $CREATED_REPO
         
       - name: View Repo
         run: gh repo view $CREATED_REPO
@@ -39,9 +35,7 @@ jobs:
       - name: Create Project
         run: |
           PROJECT_DETAILS=$(gh project create --owner @me --title "$PROJECT" --format json)
-          echo "PROJECT_DETAILS: ${PROJECT_DETAILS}"
           echo "PROJECT_NUMBER=$(echo "$PROJECT_DETAILS" | jq -r '.number')" >> $GITHUB_ENV
-
-      - name: Print Project Number
-        run: |
-          echo $PROJECT_NUMBER
+      
+      - name: View Project
+        run: gh project view $PROJECT_NUMBER --owner @me
