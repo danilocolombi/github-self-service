@@ -9,6 +9,11 @@ on:
       project-name:
         description: 'Project Name'
         required: true
+      clean-up:
+        description: 'Clean up Resources'
+        required: true
+        type: boolean
+        default: true
 
 jobs:
   create-github:
@@ -18,6 +23,7 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       REPO: ${{ github.event.inputs.repo-name }}
       PROJECT: ${{ github.event.inputs.project-name }}
+      CLEAN_UP: ${{ github.event.inputs.clean-up }}
 
     steps:
         
@@ -39,3 +45,7 @@ jobs:
       
       - name: View Project
         run: gh project view $PROJECT_NUMBER --owner @me
+
+      - name: Delete Repo
+        if: ${{ CLEAN_UP == true}}
+        run: gh repo delete $CREATED_REPO --yes
