@@ -38,5 +38,5 @@ jobs:
 
       - name: Create Project
         run: |
-          PROJECT_NUMBER=$(gh project create --title "$PROJECT")
+          PROJECT_NUMBER=$(gh project create --owner @me --title "$PROJECT")
           echo "PROJECT_NUMBER: ${PROJECT_NUMBER}"
