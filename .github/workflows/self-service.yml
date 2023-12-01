@@ -49,3 +49,7 @@ jobs:
       - name: Delete Repo
         if: ${{ env.CLEAN_UP == 'true' }}
         run: gh repo delete $CREATED_REPO --yes
+
+      - name: Delete Project
+        if: ${{ env.CLEAN_UP == 'true' }}
+        run: gh project delete $PROJECT_NUMBER --owner "@me"
