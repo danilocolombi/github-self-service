@@ -42,3 +42,6 @@ jobs:
           echo "PROJECT_DETAILS: ${PROJECT_DETAILS}"
           echo "PROJECT_NUMBER=$(echo "$PROJECT_DETAILS" | jq -r '.number')" >> $GITHUB_ENV
 
+      - name: Print Project Number
+        run: |
+          echo $PROJECT_NUMBER
