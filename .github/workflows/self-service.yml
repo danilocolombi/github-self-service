@@ -46,6 +46,15 @@ jobs:
       - name: View Project
         run: gh project view $PROJECT_NUMBER --owner @me
 
+      - name: Create Project Field - Effort
+        run: gh project field-create $PROJECT_NUMBER --owner @me --name "Effort" --data-type "NUMBER"
+
+      - name: Create Project Field - Priority
+        run: gh project field-create $PROJECT_NUMBER --owner @me --name "Priority" --data-type "NUMBER"
+      
+      - name: List Project Fields
+        run: gh project field-list $PROJECT_NUMBER --owner @me
+
       - name: Delete Repo
         if: ${{ env.CLEAN_UP == 'true' }}
         run: gh repo delete $CREATED_REPO --yes
