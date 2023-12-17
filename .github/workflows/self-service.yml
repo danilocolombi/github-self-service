@@ -38,6 +38,12 @@ jobs:
       - name: Enable Discussions
         run: gh repo edit $CREATED_REPO --enable-discussions
 
+      - name: Create Label - Security Patch
+        run: gh label create "security patch" "security update needed" -R $CREATED_REPO -c f54242
+
+      - name: List Labels
+        run: gh label list -R $CREATED_REPO
+
       - name: Create Project
         run: |
           PROJECT_DETAILS=$(gh project create --owner @me --title "$PROJECT" --format json)
