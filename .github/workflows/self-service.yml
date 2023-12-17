@@ -38,31 +38,30 @@ jobs:
 
       - name: Create Branch Protection Rule
         run: |
-          BRANCH="main"
-
           curl -X "POST" "https://api.github.com/repos/${OWNER}/${REPO}/rulesets" \
-            -H "Authorization: Bearer ${GITHUB_TOKEN}" \
-            -H "Accept: application/vnd.github.v3+json" \
-            -H "Content-Type: application/json" \
-            -d '{
-              "name": "require PR ruleset",
-              "target": "branch",
-              "enforcement": "active",
-              "conditions": {
-                "ref_name": {
-                  "include": ["refs/heads/main]"
+          -H "Authorization: Bearer ${GITHUB_TOKEN}" \
+          -H "Accept: application/vnd.github.v3+json" \
+          -H "Content-Type: application/json" \
+          -d '{
+            "name": "require PR ruleset",
+            "target": "branch",
+            "enforcement": "active",
+            "conditions": {
+              "ref_name": {
+                "include": ["refs/heads/main"]
+              }
+            },
+            "rules": [
+              {
+                "type": "pull_request",
+                "parameters": {
+                  "required_approving_review_count": 1,
+                  "required_review_thread_resolution": true,
+                  "dismiss_stale_reviews_on_push": true
                 }
-              },
-              "rules": [
-                {
-                  "type": "pull_request",
-                  "parameters": {
-                    "required_approving_review_count": 1,
-                    "required_review_thread_resolution": true,
-                    "dismiss_stale_reviews_on_push": true
-                }
-              ]
-            }'
+              }
+            ]
+          }'
 
 
       - name: Enable Discussions
