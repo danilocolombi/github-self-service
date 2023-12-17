@@ -39,7 +39,7 @@ jobs:
         run: gh repo edit $CREATED_REPO --enable-discussions
 
       - name: Create Label - Security Patch
-        run: gh label create "security patch" "security update needed" -R $CREATED_REPO -c f54242
+        run: gh label create "security patch" -d "security update needed" -R $CREATED_REPO -c f54242
 
       - name: List Labels
         run: gh label list -R $CREATED_REPO
