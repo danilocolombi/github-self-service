@@ -63,7 +63,6 @@ jobs:
             ]
           }'
 
-
       - name: Enable Discussions
         run: gh repo edit $CREATED_REPO --enable-discussions
 
