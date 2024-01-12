@@ -36,6 +36,14 @@ jobs:
       - name: View Repo
         run: gh repo view $CREATED_REPO
 
+      - name: Clone Repo
+        run: gh repo clone $CREATED_REPO
+
+      - name: First Commit
+        run: |
+          cd $CREATED_REPO
+          mkdir src
+
       - name: Create Branch Protection Rule
         run: |
           curl -X "POST" "https://api.github.com/repos/${OWNER}/${REPO}/rulesets" \
