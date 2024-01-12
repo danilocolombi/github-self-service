@@ -49,7 +49,8 @@ jobs:
         
       - name: Create Repo
         run: |
-          REPO_NAME=$(gh repo create $REPO --public --push -s $REPO) 
+          cd $REPO
+          REPO_NAME=$(gh repo create $REPO --public --source=. --push --remote=upstream) 
           echo "CREATED_REPO=${REPO_NAME}" >> $GITHUB_ENV 
         
       - name: View Repo
