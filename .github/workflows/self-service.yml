@@ -39,6 +39,8 @@ jobs:
           mkdir $REPO
           cd $REPO
           git init
+          git checkout -b main
+          git branch --unset-upstream
           mkdir src
           cd src 
           ng n $REPO --defaults
