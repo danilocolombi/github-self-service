@@ -44,13 +44,13 @@ jobs:
           echo "hello" > texto.txt
           git add .
           git commit -m "First Commit"
-          git push
         
       - name: Create Repo
         run: |
           cd $REPO
           REPO_NAME=$(gh repo create $REPO --public --source=. --push) 
-          echo "CREATED_REPO=${REPO_NAME}" >> $GITHUB_ENV 
+          echo $REPO_NAME
+        
         
       - name: View Repo
         run: gh repo view $CREATED_REPO
