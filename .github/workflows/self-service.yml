@@ -44,6 +44,7 @@ jobs:
           echo "hello" > texto.txt
           git add .
           git commit -m "First Commit"
+          git push
         
       - name: Create Repo
         run: |
