@@ -39,7 +39,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4.1.1
         with:
-          repository: $OWNER/$REPO
+          repository: ${{ github.repository_owner }}/${{ github.repo-name }}
           ref: main
           
       - name: First Commit
