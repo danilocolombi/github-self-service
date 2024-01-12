@@ -36,26 +36,21 @@ jobs:
       - name: View Repo
         run: gh repo view $CREATED_REPO
 
-      - name: Clone Repo
-        run: gh repo clone $CREATED_REPO
-
-      - name: Download Angular CLI
-        run: |
-          npm install -g @angular/cli
-          ng --help
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+        with:
+          repository: $CREATED_REPO
           
       - name: First Commit
         run: |
           cd $REPO
           mkdir src
-          cd src 
-          ng n $REPO --defaults
+
           git config --global user.name "danilocolombi"
           git config --global user.email "daniloc.t@hotmail.com"
-          git remote set-url origin https://x-access-token:$GITHUB_TOKEN@$CREATED_REPO
           git add .
           git commit -m "First Commit"
-          git push -u origin HEAD
+          git push origin main
 
       - name: Create Branch Protection Rule
         run: |
