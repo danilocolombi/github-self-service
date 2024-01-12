@@ -39,7 +39,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4.1.1
         with:
-          repository: $CREATED_REPO
+          repository: $OWNER/$REPO
           
       - name: First Commit
         run: |
