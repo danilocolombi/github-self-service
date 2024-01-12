@@ -50,6 +50,8 @@ jobs:
           mkdir src
           cd src 
           ng n $REPO --defaults
+          git config --global user.name "danilocolombi"
+          git config --global user.email "daniloc.t@hotmail.com"
           git add .
           git commit -m "First Commit"
           git push 
