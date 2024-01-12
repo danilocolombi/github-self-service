@@ -41,7 +41,7 @@ jobs:
         with:
           repository: ${{ github.repository_owner }}/${{ github.event.inputs.repo-name }}
           ref: main
-          path: 'pwd/$REPO'
+          path: ${{ env.REPO }}
           
       - name: First Commit
         run: |
