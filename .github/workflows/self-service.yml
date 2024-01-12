@@ -29,22 +29,19 @@ jobs:
     steps:
 
     
-      - name: Download Angular CLI
-        run: |
-          npm install -g @angular/cli
-          ng --help
-          
+
       - name: First Commit
         run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+          git config --global push.default simple
+          git config --global init.defaultBranch main
           mkdir $REPO
           cd $REPO
           git init
-          git checkout -b main
           mkdir src
           cd src 
-          ng n $REPO --defaults
-          git config user.name "GitHub Actions Bot"
-          git config user.email "<>"
+          echo "hello" > texto.txt
           git add .
           git commit -m "First Commit"
         
