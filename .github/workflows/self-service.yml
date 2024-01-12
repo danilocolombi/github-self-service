@@ -50,6 +50,9 @@ jobs:
           mkdir src
           cd src 
           ng n $REPO --defaults
+          git add .
+          git commit -m "First Commit"
+          git push 
 
       - name: Create Branch Protection Rule
         run: |
