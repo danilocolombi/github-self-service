@@ -36,10 +36,15 @@ jobs:
       - name: View Repo
         run: gh repo view $CREATED_REPO
 
+      - name: Download Angular CLI
+        run: |
+          npm install -g @angular/cli
+          ng --help
+
       - name: Checkout
         uses: actions/checkout@v4.1.1
         with:
-          repository: ${{ github.repository_owner }}/${{ github.event.inputs.repo-name }}
+          repository: ${{ env.OWNER }}/${{ env.REPO }}
           ref: main
           path: ${{ env.REPO }}
           
@@ -47,7 +52,8 @@ jobs:
         run: |
           cd $REPO
           mkdir src
-
+          cd src 
+          ng n $REPO --defaults
           git config --global user.name "danilocolombi"
           git config --global user.email "daniloc.t@hotmail.com"
           git add .
