@@ -54,7 +54,7 @@ jobs:
           git config --global user.email "daniloc.t@hotmail.com"
           git add .
           git commit -m "First Commit"
-          git push 
+          git push -u origin HEAD
 
       - name: Create Branch Protection Rule
         run: |
