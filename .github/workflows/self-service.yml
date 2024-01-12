@@ -40,8 +40,10 @@ jobs:
         run: gh repo clone $CREATED_REPO
 
       - name: Download Angular CLI
-        run: npm i @angular/cli
-
+        run: |
+          npm install -g @angular/cli
+          ng --help
+          
       - name: First Commit
         run: |
           cd $REPO
