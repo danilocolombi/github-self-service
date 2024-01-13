@@ -102,9 +102,10 @@ jobs:
 
     steps:
       - name: Create Project
+        id: create-project-step
         run: |
           PROJECT_DETAILS=$(gh project create --owner @me --title "$PROJECT" --format json)
-          echo "PROJECT_NUMBER=$(echo "$PROJECT_DETAILS" | jq -r '.number')" >> $GITHUB_ENV
+          echo "PROJECT_NUMBER=$(echo "$PROJECT_DETAILS" | jq -r '.number')" >> $GITHUB_OUTPUT
       
       - name: View Project
         run: gh project view $PROJECT_NUMBER --owner @me
@@ -128,4 +129,4 @@ jobs:
         run: gh repo delete $CREATED_REPO --yes
   
       - name: Delete Project
-        run: gh project delete $PROJECT_NUMBER --owner "@me"
+        run: gh project delete ${{ steps.create-project-step.outputs.PROJECT_NUMBER }} --owner "@me"
