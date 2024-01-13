@@ -95,6 +95,7 @@ jobs:
         run: gh label list -R $CREATED_REPO
 
   create-project:
+    needs: [create-repository]
     runs-on: ubuntu-latest
 
     steps:
