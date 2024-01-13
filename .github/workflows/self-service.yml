@@ -31,13 +31,16 @@ jobs:
       - name: Download Angular CLI
         run: |
           npm install -g @angular/cli
-          ng --help         
-    
-      - name: First Commit
+          ng --help
+
+      - name: Configure Git
         run: |
           git config --global user.name "GitHub Actions Bot"
           git config --global user.email "<>"
           git config --global init.defaultBranch main
+    
+      - name: First Commit
+        run: |
           mkdir $REPO
           cd $REPO
           git init
@@ -116,10 +119,14 @@ jobs:
       - name: List Project Fields
         run: gh project field-list $PROJECT_NUMBER --owner @me
 
-      - name: Delete Repo
-        if: ${{ env.CLEAN_UP == 'true' }}
-        run: gh repo delete $CREATED_REPO --yes
+  clean-up:
+    if: ${{ env.CLEAN_UP == 'true' }}
+    needs: [create-project]
+    runs-on: ubuntu-latest
 
+    steps:  
+      - name: Delete Repo
+        run: gh repo delete $CREATED_REPO --yes
+  
       - name: Delete Project
-        if: ${{ env.CLEAN_UP == 'true' }}
         run: gh project delete $PROJECT_NUMBER --owner "@me"
