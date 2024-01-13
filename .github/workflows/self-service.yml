@@ -19,7 +19,6 @@ env:
   GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
   REPO: ${{ github.event.inputs.repo-name }}
   PROJECT: ${{ github.event.inputs.project-name }}
-  CLEAN_UP: ${{ github.event.inputs.clean-up }}
   OWNER: ${{ github.repository_owner }}
   CREATED_REPO: ${{ github.repository_owner }}/${{ github.event.inputs.repo-name }}
 
@@ -120,8 +119,8 @@ jobs:
         run: gh project field-list $PROJECT_NUMBER --owner @me
 
   clean-up:
-    if: ${{ env.CLEAN_UP == 'true' }}
     needs: [create-project]
+    if: $${{ github.event.inputs.clean-up == 'true' }}
     runs-on: ubuntu-latest
 
     steps:  
