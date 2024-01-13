@@ -15,19 +15,19 @@ on:
         type: boolean
         default: true
 
+env:
+  GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+  REPO: ${{ github.event.inputs.repo-name }}
+  PROJECT: ${{ github.event.inputs.project-name }}
+  CLEAN_UP: ${{ github.event.inputs.clean-up }}
+  OWNER: ${{ github.repository_owner }}
+  CREATED_REPO: ${{ github.repository_owner }}/${{ github.event.inputs.repo-name }}
+
 jobs:
-  create-github:
+  create-repository:
     runs-on: ubuntu-latest
-
-    env:
-      GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-      REPO: ${{ github.event.inputs.repo-name }}
-      PROJECT: ${{ github.event.inputs.project-name }}
-      CLEAN_UP: ${{ github.event.inputs.clean-up }}
-      OWNER: ${{ github.repository_owner }}
-      CREATED_REPO: ${{ github.repository_owner }}/${{ github.event.inputs.repo-name }}
+      
     steps:
-
       - name: Download Angular CLI
         run: |
           npm install -g @angular/cli
@@ -94,6 +94,10 @@ jobs:
       - name: List Labels
         run: gh label list -R $CREATED_REPO
 
+  create-project:
+    runs-on: ubuntu-latest
+
+    steps:
       - name: Create Project
         run: |
           PROJECT_DETAILS=$(gh project create --owner @me --title "$PROJECT" --format json)
