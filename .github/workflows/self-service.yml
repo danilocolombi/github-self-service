@@ -52,11 +52,10 @@ jobs:
           mkdir $REPO
           cd $REPO
           git init
-          mkdir src
 
       - name: Create Angular Project
         run: |
-          cd $REPO/src
+          cd $REPO
           ng n $REPO --defaults 
 
       - name: First Commit
