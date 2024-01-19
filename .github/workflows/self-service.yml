@@ -57,15 +57,15 @@ jobs:
       - name: Create .NET Project
         if: ${{ env.APP_TYPE == '.NET' }}
         run: |
-          dotnet new sln --name $REPO
-          ls -la
+          mkdir $REPO
           cd $REPO
+          git init
+          dotnet new sln --name $REPO
           mkdir src
           cd src
           dotnet new webapi -n $REPO.Api
           cd ..
           dotnet sln add src/$REPO.Api/$Repo.Api.csproj
-          git init
           git add .
           git status
           git commit -m "Initial Commit"
