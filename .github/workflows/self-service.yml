@@ -6,6 +6,14 @@ on:
       repo-name:
         description: 'Repository Name'
         required: true
+      app-type:
+        description: 'App Type'
+        required: true
+        type: choice
+        default: Angular
+        options:
+          - Angular
+          - .NET
       project-name:
         description: 'Project Name'
         required: true
@@ -38,14 +46,22 @@ jobs:
           git config --global user.name "GitHub Actions Bot"
           git config --global user.email "<>"
           git config --global init.defaultBranch main
-    
-      - name: First Commit
+
+      - name: Create Repo Folders
         run: |
           mkdir $REPO
           cd $REPO
           git init
           mkdir src
+
+      - name: Create Angular Project
+        run: |
+          cd $REPO/src
           ng n $REPO --defaults 
+
+      - name: First Commit
+        run: |
+          cd $REPO
           git add .
           git commit -m "First Commit"
         
