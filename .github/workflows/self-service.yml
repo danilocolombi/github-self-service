@@ -64,8 +64,14 @@ jobs:
           mkdir src
           cd src
           dotnet new webapi -n $REPO.Api
+          dotnet new classlib -n $REPO.Application
+          dotnet new classlib -n $REPO.Domain
+          dotnet new classlib -n $REPO.Data
           cd ..
           dotnet sln add src/$REPO.Api/$REPO.Api.csproj
+          dotnet sln add src/$REPO.Application/$REPO.Application.csproj
+          dotnet sln add src/$REPO.Domain/$REPO.Domain.csproj
+          dotnet sln add src/$REPO.Data/$REPO.Data.csproj
           git add .
           git status
           git commit -m "Initial Commit"
