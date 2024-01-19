@@ -65,7 +65,7 @@ jobs:
           cd src
           dotnet new webapi -n $REPO.Api
           cd ..
-          dotnet sln add src/$REPO.Api/$Repo.Api.csproj
+          dotnet sln add src/$REPO.Api/$REPO.Api.csproj
           git add .
           git status
           git commit -m "Initial Commit"
