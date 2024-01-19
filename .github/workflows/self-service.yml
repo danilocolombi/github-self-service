@@ -50,15 +50,6 @@ jobs:
       - name: Create Angular Project
         run: |
           ng n $REPO --defaults 
-
-      - name: First Commit
-        run: |
-          cd $REPO
-          ls -la
-          git status
-          git add .
-          git status
-          git commit -m "First Commit"
         
       - name: Create Repo
         run: |
