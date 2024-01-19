@@ -47,20 +47,14 @@ jobs:
           git config --global user.email "<>"
           git config --global init.defaultBranch main
 
-      - name: Create Repo Folders
-        run: |
-          mkdir $REPO
-          cd $REPO
-          git init
-
       - name: Create Angular Project
         run: |
-          cd $REPO
           ng n $REPO --defaults 
 
       - name: First Commit
         run: |
           cd $REPO
+          git init
           git add .
           git commit -m "First Commit"
         
