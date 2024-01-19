@@ -58,6 +58,10 @@ jobs:
         if: ${{ env.APP_TYPE == '.NET' }}
         run: |
           dotnet new webapi -n $REPO
+          cd $REPO
+          git init
+          git add .
+          git commit "Initial Commit"
 
       - name: Create Repo
         run: |
