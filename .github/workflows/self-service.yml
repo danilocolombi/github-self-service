@@ -53,7 +53,12 @@ jobs:
         if: ${{ env.APP_TYPE == 'Angular' }}
         run: |
           ng n $REPO --defaults 
-        
+
+      - name: Create .NET Project
+        if: ${{ env.APP_TYPE == '.NET' }}
+        run: |
+          dotnet new webapi -n $REPO
+
       - name: Create Repo
         run: |
           cd $REPO
