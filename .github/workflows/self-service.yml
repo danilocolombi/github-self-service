@@ -30,6 +30,7 @@ env:
   OWNER: ${{ github.repository_owner }}
   CREATED_REPO: ${{ github.repository_owner }}/${{ github.event.inputs.repo-name }}
   CLEAN_UP: ${{ github.event.inputs.clean-up }}
+  APP_TYPE: ${{ github.event.inputs.app-type }}
 
 jobs:
   create-repository:
@@ -37,6 +38,7 @@ jobs:
       
     steps:
       - name: Download Angular CLI
+        if: ${{ env.APP_TYPE == 'Angular' }}
         run: |
           npm install -g @angular/cli
           ng --help
@@ -48,6 +50,7 @@ jobs:
           git config --global init.defaultBranch main
 
       - name: Create Angular Project
+        if: ${{ env.APP_TYPE == 'Angular' }}
         run: |
           ng n $REPO --defaults 
         
