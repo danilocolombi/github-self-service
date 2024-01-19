@@ -58,6 +58,7 @@ jobs:
         if: ${{ env.APP_TYPE == '.NET' }}
         run: |
           dotnet new sln --name $REPO
+          ls -la
           cd $REPO
           mkdir src
           cd src
