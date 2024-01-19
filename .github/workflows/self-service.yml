@@ -61,7 +61,8 @@ jobs:
           cd $REPO
           git init
           git add .
-          git commit "Initial Commit"
+          git status
+          git commit -m "Initial Commit"
 
       - name: Create Repo
         run: |
