@@ -21,6 +21,7 @@ env:
   PROJECT: ${{ github.event.inputs.project-name }}
   OWNER: ${{ github.repository_owner }}
   CREATED_REPO: ${{ github.repository_owner }}/${{ github.event.inputs.repo-name }}
+  CLEAN_UP: ${{ github.event.inputs.clean-up }}
 
 jobs:
   create-repository:
@@ -96,6 +97,10 @@ jobs:
       - name: List Labels
         run: gh label list -R $CREATED_REPO
 
+      - name: Delete Repo
+        if: ${{ env.CLEAN_UP == 'true' }}
+        run: gh repo delete $CREATED_REPO --yes
+
   create-project:
     needs: [create-repository]
     runs-on: ubuntu-latest
@@ -125,14 +130,9 @@ jobs:
       - name: List Project Fields
         run: gh project field-list $PROJECT_NUMBER --owner @me
 
-  clean-up:
-    needs: [create-project]
-    if: $${{ github.event.inputs.clean-up == 'true' }}
-    runs-on: ubuntu-latest
-
-    steps:  
-      - name: Delete Repo
-        run: gh repo delete $CREATED_REPO --yes
-  
       - name: Delete Project
-        run: gh project delete ${{ steps.create-project-step.outputs.PROJECT_NUMBER }} --owner "@me"
+        run: gh
+
+      - name: Delete Project
+        if: ${{ env.CLEAN_UP == 'true' }}
+        run: gh project delete $PROJECT_NUMBER --owner "@me"
