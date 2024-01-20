@@ -73,6 +73,9 @@ jobs:
           dotnet sln add src/$REPO.Domain/$REPO.Domain.csproj
           dotnet sln add src/$REPO.Data/$REPO.Data.csproj
           mkdir tests
+          mkdir .github
+          cd .github
+          cd ..
           git add .
           git status
           git commit -m "Initial Commit"
