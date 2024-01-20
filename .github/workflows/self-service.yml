@@ -38,7 +38,9 @@ jobs:
       
     steps:
       - name: Checkout
-        uses: actions/checkout@v4.1.1        
+        uses: actions/checkout@v4.1.1
+        with:
+          path: "/home"
     
       - name: Download Angular CLI
         if: ${{ env.APP_TYPE == 'Angular' }}
@@ -60,7 +62,7 @@ jobs:
       - name: Create .NET Project
         if: ${{ env.APP_TYPE == '.NET' }}
         run: |
-          ls -la
+          ls -la /home
           mkdir $REPO
           cd $REPO
           git init
@@ -78,7 +80,7 @@ jobs:
           dotnet sln add src/$REPO.Data/$REPO.Data.csproj
           mkdir tests
           mkdir -p .github/workflows
-          cp ../github-self-service/.github/templates/dotnet-build.yml .github/workflows/dotnet-build.yml
+          cp /home/github-self-service/.github/templates/dotnet-build.yml .github/workflows/dotnet-build.yml
           cd ..
           git add .
           git status
