@@ -78,7 +78,7 @@ jobs:
           dotnet sln add src/$REPO.Data/$REPO.Data.csproj
           mkdir tests
           mkdir -p .github/workflows
-          cp $GITHUB_WORKSPACE/github-self-service/.github/templates/dotnet-build.yml .github/workflows/dotnet-build.yml
+          cp $GITHUB_WORKSPACE/.github/templates/dotnet-build.yml .github/workflows/dotnet-build.yml
           cd ..
           git add .
           git status
