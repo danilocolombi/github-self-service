@@ -77,8 +77,8 @@ jobs:
           dotnet sln add src/$REPO.Domain/$REPO.Domain.csproj
           dotnet sln add src/$REPO.Data/$REPO.Data.csproj
           mkdir tests
-          mkdir .github
-          cd .github
+          mkdir -p .github/workflows
+          cp ../github-self-service/.github/templates/dotnet-build.yml .github/workflows/dotnet-build.yml
           cd ..
           git add .
           git status
