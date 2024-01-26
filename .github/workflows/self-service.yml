@@ -55,7 +55,9 @@ jobs:
       - name: Create Angular Project
         if: ${{ env.APP_TYPE == 'Angular' }}
         run: |
-          ng n $REPO --defaults 
+          ng n $REPO --defaults
+          cd $REPO
+          git init
 
       - name: Create .NET Project
         if: ${{ env.APP_TYPE == '.NET' }}
@@ -163,9 +165,6 @@ jobs:
       
       - name: List Project Fields
         run: gh project field-list $PROJECT_NUMBER --owner @me
-
-      - name: Delete Project
-        run: gh
 
       - name: Delete Project
         if: ${{ env.CLEAN_UP == 'true' }}
