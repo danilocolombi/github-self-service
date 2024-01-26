@@ -55,9 +55,6 @@ jobs:
       - name: Create Angular Project
         if: ${{ env.APP_TYPE == 'Angular' }}
         run: |
-          mkdir $REPO
-          cd $REPO
-          git init
           ng n $REPO --defaults
 
       - name: Create .NET Project
