@@ -60,7 +60,6 @@ jobs:
       - name: Create .NET Project
         if: ${{ env.APP_TYPE == '.NET' }}
         run: |
-          ls -la $GITHUB_WORKSPACE
           mkdir $REPO
           cd $REPO
           dotnet new sln --name $REPO
@@ -89,8 +88,8 @@ jobs:
           git commit -m "Initial Commit"
 
       - name: Create Repo
+        working-directory: ${{ env.REPO }}
         run: |
-          cd $REPO
           REPO_NAME=$(gh repo create $REPO --public --source=. --push) 
           echo $REPO_NAME
         
