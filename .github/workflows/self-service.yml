@@ -56,8 +56,7 @@ jobs:
         if: ${{ env.APP_TYPE == 'Angular' }}
         run: |
           ng n $REPO --defaults
-          cd $REPO
-          git init
+          ls
 
       - name: Create .NET Project
         if: ${{ env.APP_TYPE == '.NET' }}
@@ -81,6 +80,11 @@ jobs:
           mkdir tests
           mkdir -p .github/workflows
           cp $GITHUB_WORKSPACE/.github/templates/dotnet-build.yml .github/workflows/dotnet-build.yml
+          
+
+      - name: Git Commit
+        run: |
+          cd $REPO
           git add .
           git status
           git commit -m "Initial Commit"
