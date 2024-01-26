@@ -81,8 +81,8 @@ jobs:
 
 
       - name: Git Init
+        working-directory: $REPO
         run: |
-          cd $REPO
           git init
           git add .
           git status
