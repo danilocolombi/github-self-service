@@ -81,7 +81,7 @@ jobs:
 
 
       - name: Git Init
-        working-directory: $REPO
+        working-directory: ${{ env.REPO }}
         run: |
           git init
           git add .
