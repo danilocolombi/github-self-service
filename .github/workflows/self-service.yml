@@ -84,9 +84,10 @@ jobs:
           cp $GITHUB_WORKSPACE/.github/templates/dotnet-build.yml .github/workflows/dotnet-build.yml
           
 
-      - name: Git Commit
+      - name: Git Init
         run: |
           cd $REPO
+          git init
           git add .
           git status
           git commit -m "Initial Commit"
