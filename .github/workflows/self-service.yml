@@ -56,8 +56,6 @@ jobs:
         if: ${{ env.APP_TYPE == 'Angular' }}
         run: |
           ng n $REPO --defaults
-          cd $REPO
-          git init
 
       - name: Create .NET Project
         if: ${{ env.APP_TYPE == '.NET' }}
@@ -65,7 +63,6 @@ jobs:
           ls -la $GITHUB_WORKSPACE
           mkdir $REPO
           cd $REPO
-          git init
           dotnet new sln --name $REPO
           mkdir src
           cd src
@@ -86,6 +83,7 @@ jobs:
       - name: Git Init
         run: |
           cd $REPO
+          git init
           git add .
           git status
           git commit -m "Initial Commit"
